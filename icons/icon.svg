@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="lightBlueHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#caf0f8"/>
+      <stop offset="70%" stop-color="#90e0ef"/>
+      <stop offset="100%" stop-color="#00b4d8"/>
+    </linearGradient>
+    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Pure Light Blue Heart (🩵) without any square background -->
+  <path d="M256 440 C256 440 80 330 80 200 C80 125 138 75 210 75 C248 75 256 102 256 102 C256 102 264 75 302 75 C374 75 432 125 432 200 C432 330 256 440 256 440 Z" 
+        fill="url(#lightBlueHeartGrad)" 
+        filter="url(#glowEffect)"/>
+
+  <!-- Subtle Diamond Sparkle Star on Top Right -->
+  <polygon points="340,60 345,78 363,83 345,88 340,106 335,88 317,83 335,78" fill="#ffffff"/>
+</svg>
