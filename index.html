@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#003554">
+  <meta name="description" content="Days countdown to Arun & Dhiya's wedding">
+  
+  <!-- Apple iOS Mobile PWA Metadata -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Arun & Dhiya">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+
+  <title>Arun & Dhiya</title>
+  
+  <!-- Favicon: Light Blue Heart Icon (🩵) in browser tab -->
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="shortcut icon" href="icons/icon.svg">
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google Fonts: Elegant Romantic Calligraphy & Soft Quote Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Pinyon+Script&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Romantic Floating Canvas Particles -->
+  <canvas id="heartsCanvas"></canvas>
+  <div class="glow-bg"></div>
+
+  <!-- Main App Container -->
+  <main class="app-container">
+    
+    <!-- Romantic Header -->
+    <header class="header">
+      <h1 class="couple-names">
+        Arun <span class="amp">&</span> Dhiya
+      </h1>
+      <p class="love-quote">"Counting the time until you are mine forever..." ❤️</p>
+    </header>
+
+    <!-- Main Romantic Counter Card -->
+    <section class="counter-card" id="counterCard">
+      
+      <!-- Main Days Number Display -->
+      <div class="main-days-wrapper">
+        <span class="days-number" id="daysNumber">--</span>
+        <span class="days-label" id="daysLabel">Days Remaining</span>
+      </div>
+
+      <!-- Live Detailed Ticker Grid -->
+      <div class="live-ticker-grid" id="tickerGrid">
+        <div class="ticker-box">
+          <span class="ticker-num" id="liveDays">00</span>
+          <span class="ticker-lbl">Days</span>
+        </div>
+        <div class="ticker-box">
+          <span class="ticker-num" id="liveHours">00</span>
+          <span class="ticker-lbl">Hours</span>
+        </div>
+        <div class="ticker-box">
+          <span class="ticker-num" id="liveMinutes">00</span>
+          <span class="ticker-lbl">Mins</span>
+        </div>
+        <div class="ticker-box">
+          <span class="ticker-num" id="liveSeconds">00</span>
+          <span class="ticker-lbl">Secs</span>
+        </div>
+      </div>
+
+      <!-- Target Wedding Date -->
+      <div class="wedding-date-display" id="weddingDateDisplay">
+        November 20, 2026 💍
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
