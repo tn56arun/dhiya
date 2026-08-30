@@ -10,13 +10,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Arun & Dhiya">
-  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
 
   <title>Arun & Dhiya</title>
   
-  <!-- Favicon: Light Blue Heart Icon (🩵) in browser tab -->
-  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-  <link rel="shortcut icon" href="icons/icon.svg">
+  <!-- Favicons: PNG Icon from icons folder -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png">
+  <link rel="shortcut icon" href="icons/favicon.png">
 
   <!-- Web App Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -34,8 +35,24 @@
   <canvas id="heartsCanvas"></canvas>
   <div class="glow-bg"></div>
 
+  <!-- Cinematic Intro Splash Screen -->
+  <div class="intro-splash" id="introSplash" title="Tap to open">
+    <div class="splash-glow"></div>
+    <div class="splash-content">
+      <div class="splash-image-wrapper">
+        <div class="splash-pulse-ring"></div>
+        <img src="icons/icon.png" alt="Arun & Dhiya" class="splash-photo">
+      </div>
+      <h2 class="splash-names">Arun <span class="splash-amp">&</span> Dhiya</h2>
+      <p class="splash-tagline">Counting Down To Forever 💍</p>
+      <div class="splash-loading-bar">
+        <div class="splash-loading-progress"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Main App Container -->
-  <main class="app-container">
+  <main class="app-container" id="mainContainer">
     
     <!-- Romantic Header -->
     <header class="header">
@@ -79,6 +96,12 @@
         November 20, 2026 💍
       </div>
     </section>
+
+    <!-- PWA Install Button -->
+    <button id="pwaInstallBtn" class="pwa-install-btn" title="Install App">
+      <i class="fa-solid fa-cloud-arrow-down"></i>
+      <span>Install App</span>
+    </button>
   </main>
 
   <script src="script.js"></script>

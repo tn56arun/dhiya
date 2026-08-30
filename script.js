@@ -78,6 +78,41 @@ updateWeddingCountdown();
 setInterval(updateWeddingCountdown, 1000);
 
 /* ========================================================
+   Cinematic Intro Splash Animation & Transition
+======================================================== */
+const introSplash = document.getElementById('introSplash');
+const mainContainer = document.getElementById('mainContainer');
+
+let splashDismissed = false;
+
+function dismissIntroSplash() {
+  if (splashDismissed) return;
+  splashDismissed = true;
+
+  if (introSplash) {
+    introSplash.classList.add('splash-hidden');
+    setTimeout(() => {
+      introSplash.style.display = 'none';
+    }, 900);
+  }
+
+  if (mainContainer) {
+    mainContainer.classList.add('app-visible');
+  }
+}
+
+// Auto transition after 2.3 seconds
+const splashTimer = setTimeout(dismissIntroSplash, 2300);
+
+// Allow user to tap/click anywhere to transition immediately
+if (introSplash) {
+  introSplash.addEventListener('click', () => {
+    clearTimeout(splashTimer);
+    dismissIntroSplash();
+  });
+}
+
+/* ========================================================
    Aqua Blue Canvas Particles (Hearts & Sparkles)
 ======================================================== */
 const canvas = document.getElementById('heartsCanvas');
@@ -160,7 +195,7 @@ function animateParticles() {
 animateParticles();
 
 /* ========================================================
-   PWA Service Worker Registration
+   PWA Service Worker Registration & Install Prompt
 ======================================================== */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -173,3 +208,37 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+// PWA Install Prompt Handling
+let deferredPrompt = null;
+const installBtn = document.getElementById('pwaInstallBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent default mini-infobar or auto prompt
+  e.preventDefault();
+  deferredPrompt = e;
+  if (installBtn) {
+    installBtn.style.display = 'inline-flex';
+  }
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) {
+      alert("To install this app on your device:\n\n• On iPhone/iPad (Safari): Tap the 'Share' icon and choose 'Add to Home Screen'.\n• On Android/Chrome: Tap the 3 dots menu and choose 'Install app' or 'Add to Home screen'.");
+      return;
+    }
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User response to install prompt: ${outcome}`);
+    deferredPrompt = null;
+    installBtn.style.display = 'none';
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  console.log('PWA installed successfully');
+  if (installBtn) {
+    installBtn.style.display = 'none';
+  }
+});

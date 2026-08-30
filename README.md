@@ -31,7 +31,13 @@ A clean, minimal, premium Progressive Web App (PWA) that calculates and displays
 ├── service-worker.js
 ├── README.md
 └── icons/
-    └── icon.svg
+    ├── icon.png        (Original full-res photo)
+    ├── icon-512.png    (512x512 PWA splash)
+    ├── icon-192.png    (192x192 PWA standard)
+    ├── icon-180.png    (Apple touch icon)
+    ├── icon-32.png     (Browser favicon 32x32)
+    ├── icon-16.png     (Browser favicon 16x16)
+    └── favicon.png     (Favicon 64x64)
 ```
 
 ---

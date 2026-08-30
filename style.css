@@ -59,6 +59,184 @@ html, body {
   z-index: 0;
 }
 
+/* ========================================================
+   Cinematic Intro Splash Screen
+======================================================== */
+.intro-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #003e61 0%, #001f33 65%, #00111c 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.85s;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.intro-splash.splash-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.08);
+}
+
+.splash-glow {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.35) 0%, rgba(0, 180, 216, 0.1) 60%, transparent 80%);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: splashPulseGlow 3s infinite alternate ease-in-out;
+}
+
+.splash-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+/* Photo Wrapper & Rings */
+.splash-image-wrapper {
+  position: relative;
+  width: 175px;
+  height: 175px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-photo {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 40px rgba(0, 242, 254, 0.7), 0 10px 30px rgba(0, 0, 0, 0.6);
+  animation: splashPhotoZoom 2.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.splash-pulse-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid rgba(0, 242, 254, 0.8);
+  border-radius: 50%;
+  animation: splashRingWave 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+/* Typography in Splash */
+.splash-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 10vw, 4.5rem);
+  font-weight: 300;
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(0, 242, 254, 0.85), 0 2px 10px rgba(0, 30, 60, 0.8);
+  margin-bottom: 6px;
+  animation: splashTextEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+.splash-names .splash-amp {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6em;
+  color: var(--aqua-bright);
+  vertical-align: middle;
+}
+
+.splash-tagline {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.25rem, 4.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--aqua-bright);
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 10px rgba(0, 40, 70, 0.8);
+  margin-bottom: 24px;
+  animation: splashTextEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+}
+
+/* Subtle Loading Bar */
+.splash-loading-bar {
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  animation: splashTextEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+}
+
+.splash-loading-progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--aqua-neon), #ffffff, var(--aqua-cyan));
+  border-radius: 6px;
+  animation: splashBarFill 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Keyframes for Splash Screen */
+@keyframes splashPhotoZoom {
+  0% {
+    transform: scale(0.65);
+    opacity: 0;
+    filter: blur(12px);
+  }
+  35% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes splashRingWave {
+  0% {
+    transform: scale(0.85);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes splashTextEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashBarFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes splashPulseGlow {
+  0% { opacity: 0.5; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
 /* App Container */
 .app-container {
   position: relative;
@@ -73,6 +251,14 @@ html, body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  opacity: 0;
+  transform: translateY(22px) scale(0.96);
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.app-container.app-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* Header Section */
@@ -275,3 +461,45 @@ html, body {
     padding: 10px 2px;
   }
 }
+
+/* PWA Install Button */
+.pwa-install-btn {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: rgba(0, 242, 254, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 50, 80, 0.4), 0 0 20px rgba(0, 242, 254, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-shadow: 0 2px 4px rgba(0, 30, 50, 0.5);
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+
+.pwa-install-btn i {
+  font-size: 1.1rem;
+  color: var(--aqua-bright);
+}
+
+.pwa-install-btn:hover, .pwa-install-btn:active {
+  transform: translateY(-2px) scale(1.03);
+  background: rgba(0, 242, 254, 0.35);
+  border-color: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 50, 80, 0.6), 0 0 30px rgba(0, 242, 254, 0.6);
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 8px 25px rgba(0, 50, 80, 0.4), 0 0 15px rgba(0, 242, 254, 0.25); }
+  100% { box-shadow: 0 8px 25px rgba(0, 50, 80, 0.4), 0 0 30px rgba(0, 242, 254, 0.55); }
+}
+

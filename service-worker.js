@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arun-dhiya-wedding-v1';
+const CACHE_NAME = 'arun-dhiya-wedding-v3';
 
 const ASSETS_TO_CACHE = [
   './',
@@ -6,7 +6,13 @@ const ASSETS_TO_CACHE = [
   './style.css',
   './script.js',
   './manifest.json',
-  './icons/icon.svg'
+  './icons/icon.png',
+  './icons/favicon.png',
+  './icons/icon-16.png',
+  './icons/icon-32.png',
+  './icons/icon-180.png',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 // Install Event - Caches static assets
